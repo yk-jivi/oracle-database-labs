@@ -1,0 +1,36 @@
+--Вариант №2  Шматова Юлия 2к. 3/2
+
+--Найти всех сотрудников и сумму их заказов
+select s.NAME [Сотрудник],
+  sum(pr.PRICE) [Сумма заказов]
+  from SALESREPS s join ORDERS ord
+  On s.EMPL_NUM = ord.REP
+          join PRODUCTS pr
+  On ord.PRODUCT = pr.PRODUCT_ID
+  Group by s.NAME
+
+--Найти сотрудников, которые работают в одном отделе с сотрудником Sam Clark
+select s.NAME [Сотрудник],
+    ofc.OFFICE,
+    ofc.CITY
+  from SALESREPS s join OFFICES ofc
+  On s.REP_OFFICE = ofc.OFFICE
+  where s.REP_OFFICE = (
+  select ss.REP_OFFICE from SALESREPS ss
+  where ss.NAME = 'Sam Clark'
+  ) and s.NAME != 'Sam Clark'
+
+--Выбрать самого главного сотрудника
+select  sal.EMPL_NUM, 
+    sal.NAME,
+    sal.MANAGER
+  from SALESREPS sal
+  where sal.MANAGER is null
+union
+select  s.EMPL_NUM,
+    s.NAME,
+    s.MANAGER
+from SALESREPS s
+where s.MANAGER = (select sal.EMPL_NUM
+  from SALESREPS sal
+  where sal.MANAGER is null)

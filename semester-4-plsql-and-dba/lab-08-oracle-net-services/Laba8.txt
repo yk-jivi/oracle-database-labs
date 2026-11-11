@@ -1,0 +1,27 @@
+--Задание №1 (на сервере)
+--Найдите на компьютере-сервере конфигурационные файлы 
+--SQLNET.ORA и TNSNAMES.ORA и ознакомьтесь с их содержимым.
+
+echo $ORACLE_HOME
+
+cd /opt/oracle/product/26ai/dbhomeFree/network/admin
+
+ls
+
+cat sqlnet.ora
+cat tnsnames.ora
+
+--Задание №2
+Настройте соединение при помощи SQL Developer с сервером Oracle с компьютера-клиента. Убедитесь, что соединение работает.
+
+--Задание №3 Настройте соединение при помощи SQLPLUS с сервером Oracle с помощью стандартной строки соединения с компьютера-клиента. Убедитесь, что соединение работает.
+C:\Users\admin>sqlplus /nolog
+SQL> connect system/oracle@10.208.124.185:1521/freepdb1
+
+--Задание №4
+Запустите утилиту Oracle Net Manager на клиенте и настройте TNS соединение. 
+
+--Задание №5
+В sql Developer уже есть соединение
+В Window PowerShell в cmd
+sqlplus system/oracle@freepdb
